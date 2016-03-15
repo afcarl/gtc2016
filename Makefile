@@ -1,6 +1,6 @@
-S5732_FredericBastien.pdf: S5732_FredericBastien.tex
-	pdflatex S5732_FredericBastien.tex
-	pdflatex S5732_FredericBastien.tex
+S6116_FredericBastien.pdf: S6116_FredericBastien.tex
+	pdflatex S6116_FredericBastien.tex
+	pdflatex S6116_FredericBastien.tex
 
 clean:
 	rm *.toc *.snm *.aux *.log *.nav *.out *.vrb
