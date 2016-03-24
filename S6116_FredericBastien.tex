@@ -686,9 +686,10 @@ modes regard as fine.
 
 \begin{frame}{CuDNN}
   \begin{itemize}
-  \item R1 and R2 is supported.
+  \item V3 and V4 is supported.
   \item It is enabled automatically if available.
-  \item Theano flag to get an error if can't be used: ``optimizer\_including=cudnn''
+  \item Theano flag to get an error if can't be used: ``dnn.enabled=True''
+  \item Theano flag to disable it: ``dnn.enabled=False''
   \end{itemize}
 \end{frame}
 
@@ -742,7 +743,10 @@ Inputs types: [TensorType(float64, vector),
                TensorType(float64, vector)]
 Inputs shapes: [(3,), (2,), (2,)]
 Inputs strides: [(8,), (8,), (8,)]
-Inputs scalar values: ['not scalar', 'not scalar', 'not scalar']
+Inputs values: [array([ 1.,  1.,  1.]),
+                array([ 1.,  1.]),
+                array([ 1.,  1.])]
+Outputs clients: [['output']]
 \end{lstlisting}
 \end{frame}
 
@@ -808,11 +812,11 @@ Backtrace when the node is created:
 \begin{lstlisting}
 >>> from theano.printing import debugprint
 >>> debugprint(a)
-Elemwise{mul,no_inplace} [@A] ''
- |TensorConstant{2.0} [@B]
- |Elemwise{add,no_inplace} [@C] 'z'
-   |<TensorType(float64, scalar)> [@D]
-   |<TensorType(float64, scalar)> [@E]
+Elemwise{mul,no_inplace} [id A] ''
+ |TensorConstant{2.0} [id B]
+ |Elemwise{add,no_inplace} [id C] 'z'
+   |<TensorType(float64, scalar)> [id D]
+   |<TensorType(float64, scalar)> [id E]
 \end{lstlisting}
 \end{frame}
 
