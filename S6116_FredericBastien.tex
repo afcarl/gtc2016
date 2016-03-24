@@ -1026,7 +1026,7 @@ index = T.lscalar()  # index to a [mini]batch
 x = T.matrix('x')   # the data, 1 row per image
 y = T.ivector('y')  # labels
 
-# Reshape matrix of rasterized images of shape (batch_size, 28 * 28)
+# Reshape matrix of shape (batch_size, 28 * 28)
 # to a 4D tensor, compatible for convolution
 layer0_input = x.reshape((batch_size, 1, 28, 28))
 \end{lstlisting}
@@ -1040,18 +1040,18 @@ layer0_input = x.reshape((batch_size, 1, 28, 28))
         stringstyle=\color{violet},
         }
 \begin{lstlisting}
-image_shape=(batch_size, 1, 28, 28),
-filter_shape=(nkerns[0], 1, 5, 5),
+image_shape=(batch_size, 1, 28, 28)
+filter_shape=(nkerns[0], 1, 5, 5)
 
 W_bound = ...
 W = theano.shared(
     numpy.asarray(
         rng.uniform(low=-W_bound, high=W_bound,
                     size=filter_shape),
-        dtype=theano.config.floatX),
-)
+        dtype=theano.config.floatX))
 
-# the bias is a 1D tensor -- one bias per output feature map
+# the bias is a 1D tensor
+# one bias per output feature map
 b_values = numpy.zeros((filter_shape[0],),dtype=...
 b = theano.shared(b_values)
 \end{lstlisting}
@@ -1068,7 +1068,8 @@ b = theano.shared(b_values)
 # convolve input feature maps with filters
 conv_out = conv.conv2d(input=x, filters=W)
 
-# downsample each feature map individually, using maxpooling
+# downsample each feature map individually,
+# using maxpooling
 pooled_out = downsample.max_pool_2d(
     input=conv_out,
     ds=(2, 2),  // poolsize
