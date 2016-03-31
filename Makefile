@@ -1,3 +1,9 @@
+all: S6116_FredericBastien.pdf S6845_FredericBastien.pdf
+
+S6845_FredericBastien.pdf: S6845_FredericBastien.tex
+	pdflatex S6845_FredericBastien.tex
+	pdflatex S6845_FredericBastien.tex
+
 S6116_FredericBastien.pdf: S6116_FredericBastien.tex
 	pdflatex S6116_FredericBastien.tex
 	pdflatex S6116_FredericBastien.tex
