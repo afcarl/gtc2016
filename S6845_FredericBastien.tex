@@ -12,18 +12,18 @@
 
 \mode<presentation>
 
-\title{Theano at a Glance: A Framework for Machine Learning}
+\title{Theano at a Glance:\newline A Framework for Machine Learning}
 
 \author{%
 \footnotesize
 Frédéric Bastien \newline
 \newline
 \newline
-Département d'Informatique et de Recherche Opérationnelle \newline
+Montreal Institute for Learning Algorithms \newline
 Université de Montréal \newline
 Montréal, Canada \newline
 \texttt{bastienf@iro.umontreal.ca} \newline \newline
-Presentation prepared with Pierre Luc Carrier and Arnaud Bergeron
+Presentation prepared with Pascal Lamblin and Simon Lefrancois
 }
 
 \date{GTC 2016}
@@ -39,19 +39,13 @@ Presentation prepared with Pierre Luc Carrier and Arnaud Bergeron
  \includegraphics[width=.8in]{pics/UdeM_NoirBleu_logo_Marie_crop}
 \end{frame}
 
-%\begin{frame}{Slides}
-%\begin{itemize}
-% \item PDF of the slides: \url{https://goo.gl/z0tynd}
-% \item github repo of this presentation \url{https://github.com/nouiz/gtc2016/}
-%\end{itemize}
-%\end{frame}
-
 \section{Introduction}
+\subsection{Introduction}
 \begin{frame}
   \tableofcontents[currentsection]
 \end{frame}
 
-\begin{frame}{High level}\setcounter{page}{1}
+\begin{frame}{High level}  %\setcounter{page}{1}
   Python <- \{NumPy/SciPy/libgpuarray\} <- Theano <- \{...\}
   \begin{itemize}
   \item Python: OO coding language
@@ -59,21 +53,31 @@ Presentation prepared with Pierre Luc Carrier and Arnaud Bergeron
   \item SciPy: sparse matrix objects and more scientific computing functionality
   \item libgpuarray: GPU $n$-dimensional array object in C for CUDA and OpenCL
   \item Theano: compiler/symbolic graph manipulation
-  \begin{itemize}
-\item \bf{(Not a machine learning framework/software)}
-  \end{itemize}
-  \item \{...\}: Many libraries build on top of Theano
+    \begin{itemize}
+    \item \bf{(Not specific to machine learning)}
+    \end{itemize}
+  \item \{...\}: Many libraries built on top of Theano
 
   \end{itemize}
 \end{frame}
 
-\begin{frame}{High level (2)}
+\begin{frame}{What Theano provides}
+  \begin{itemize}
+    \item Lazy evaluation for performance
+    \item GPU support
+    \item Symbolic differentiation
+    \item Automatic speed and stability optimization
+  \end{itemize}
+
+\end{frame}
+
+\begin{frame}{High level}
   Many [machine learning] library build on top of Theano
   \begin{itemize}
   \item Keras
   \item blocks
   \item lasagne
-  \item sklearn-theano: combine Theano and sklearn.
+  \item sklearn-theano
   \item PyMC 3
   \item theano-rnn
   \item Morb
@@ -81,18 +85,24 @@ Presentation prepared with Pierre Luc Carrier and Arnaud Bergeron
   \end{itemize}
 \end{frame}
 
+\begin{frame}{Goal of the stack}
+\begin{center}
+\begin{bf}Fast to develop\end{bf}\newline \bigskip
+\begin{bf}Fast to run\end{bf}\newline \bigskip
+\hspace{-2.5cm}
+\includegraphics[width=0.35\textwidth]{pics/road-runner-1.jpg}
+\end{center}
+\end{frame}
+
 \begin{frame}{Some models build with Theano}
   Some models that have been build with Theano.
   \begin{itemize}
   \item Neural Networks
-  \item Convolutional Neural Networks
-  \item RNN, RNN CTC, LSTM
-  \item NADE, RNADE
+  \item Convolutional Neural Networks, AlexNet, OverFeat, GoogLeNet
+  \item RNN, CTC, LSTM, GRU
+  \item NADE, RNADE, MADE
   \item Autoencoders
-  \item Alex Net's
-  \item GoogleLeNet
-  \item Overfeat
-  \item Generative Adverserial Nets
+  \item Generative Adversarial Nets
   \item SVMs
   \item \begin{bf}many variations of above models and more\end{bf}
   \end{itemize}
@@ -109,12 +119,12 @@ Presentation prepared with Pierre Luc Carrier and Arnaud Bergeron
 %%   \end{itemize}
 %% \end{frame}
 
-\begin{frame}{Project status?}
+\begin{frame}{Project status}
   \begin{itemize}
     \item Mature: Theano has been developed and used since January 2008 (8 yrs old)
-    \item Driven hundreds research papers
+    \item Driven hundreds of research papers % Over a thousands of research paper
     \item Good user documentation
-    \item Active mailing list with participants from outside our institute
+    \item Active mailing list with worldwide participants
     \item Core technology for Silicon-Valley start-ups
     \item Many contributors (some from outside our institute)
     \item Used to teach many university classes
@@ -130,31 +140,40 @@ Presentation prepared with Pierre Luc Carrier and Arnaud Bergeron
 %%Institut des algorithmes d'apprentissage de Montréal
 %%Montreal Institute for Learning Algorithms
 
-%%- Who we are, what we do
-\section{Community}
+%%- TODOWho we are, what we do
+\subsection{Community}
 \begin{frame}{Theano community}
+Active community
   \begin{itemize}
-  \item Active community
+  \item Many people reply on our mailing lists
+  \item Hundreds of answered questions on StackOverflow
   \item 141 contributors to Theano 0.8
-  \item Main developer at MILA
+  \item Main developers at MILA
   \end{itemize}
 \end{frame}
 
 \begin{frame}{MILA}
-  \begin{tiny}formely known as LISA.\end{tiny}
+Institut des algorithmes d'apprentissage de Montréal\newline
+Montreal Institute for Machine Learning\newline
 \begin{itemize}
-\item Professors 5
+\item Professors 6
 \item Staff 6
 \item Visiting Scientists 1
 \item Post-Doc 6
-\item Ph.D. 33
-\item MSc. 20
+\item Ph.D. students 33
+\item M.Sc. students 20
 \item Interns 16
-\item Total 86
+\item Total 87
 \end{itemize}
+ \vspace{-5em}
+ \hspace{19em}
+ \includegraphics[width=1.4in]{pics/MILA.png}
+ \hfill
+\url{mila.umontreal.ca} \newline
+\begin{tiny}formely known as LISA\end{tiny}
 \end{frame}
 
-\begin{frame}{MILA Partners??}
+\begin{frame}{MILA Partners}
 \begin{itemize}
 \item Many universities
 \item Ubisoft
@@ -171,64 +190,9 @@ Presentation prepared with Pierre Luc Carrier and Arnaud Bergeron
 \end{itemize}
 \end{frame}
 
-\begin{frame}{Theano 0.8 (1)}
-\begin{tiny}Relesed 21th of March, 2016\end{tiny}
 
-Highlights:
-\begin{itemize}
-\item Faster compilation and execution
-\item Integration of CuDNN for better GPU performance
-\item Many Scan improvements (execution speed up, ...)
-\item optimizer=fast\_compile moves computation to the GPU.
-\item Multi-GPU for data parallism via Platoon \url{https://github.com/mila-udem/platoon}
-\item New GPU back-end:  
-  \begin{itemize}
-  \item Float16 new back-end (need cuda 7.5)
-  \item Multi dtypes
-  \item Multi-GPU support in the same process
-  \end{itemize}
-\end{itemize}
-
-\end{frame}
-
-
-\begin{frame}{Theano 0.8 (2)}
-
-Highlights:
-\begin{itemize}
-\item Better convolution on CPU and GPU. (CorrMM, cudnn, 3d conv, more parameter)
-\item More pooling parameter supported
-\item Interactive visualization of graphs with d3viz
-\item cnmem (better memory management on GPU)
-\item Bilinear interpolation of images
-\end{itemize}
-
-A total of 141 people contributed to this release.
-\end{frame}
-
-
-\section{Roadmap}
-\begin{frame}{Roadmap}
-  \normalsize
-  \begin{itemize}
-  \item Deprecate the old GPU back-end
-  \item Faster compile time
-    \begin{itemize}
-    \item First time compilation (less C code compilations, already cached)
-    \item Of big graph (faster graph optimization)
-    \end{itemize}
-  \item Handling of bigger graph
-  \item Speed/Memory trade off
-    \begin{itemize}
-    \item Scan very long sequence, (ex: Audio recognition and generation)
-    \item Recompute cheap operation of the forward during the gradient
-    \end{itemize}
-  \item More Multi-GPU data parallelism algo.
-  \end{itemize}
-\end{frame}
-
-
-
+\section{Theano}
+\subsection{Description}
 \begin{frame}{Python}
   \begin{itemize}
   \item General-purpose high-level OO interpreted language
@@ -241,58 +205,6 @@ A total of 141 people contributed to this release.
   \end{itemize}
 \end{frame}
 
-\begin{frame}{NumPy/SciPy}
-  \begin{itemize}
-%  \item Python floats are full-fledged objects on the heap
-%      \begin{itemize}
-%      \item Not suitable for high-performance computing!
-%      \end{itemize}
-
-  \item NumPy provides an $n$-dimensional numeric array in Python
-      \begin{itemize}
-      \item Perfect for high-performance computing
-      \item Slices of arrays are views (no copying)
-      \end{itemize}
-
-  \item NumPy provides
-      \begin{itemize}
-      \item Elementwise computations
-      \item Linear algebra, Fourier transforms
-      \item Pseudorandom number generators (many distributions)
-      \end{itemize}
-
-  \item SciPy provides lots more, including
-      \begin{itemize}
-      \item Sparse matrices
-      \item More linear algebra
-      \item Solvers and optimization algorithms
-      \item Matlab-compatible I/O
-      \item I/O and signal processing for images and audio
-      \end{itemize}
-  \end{itemize}
-\end{frame}
-
-\begin{frame}{What's missing?}
-  \begin{itemize}
-    \item Non-lazy evaluation (required by Python) hurts performance
-    \item Bound to the CPU
-    \item Lacks symbolic or symbolic differentiation
-    \item No automatic speed and stability optimization
-  \end{itemize}
-
-\end{frame}
-
-\begin{frame}{Goal of the stack}
-\begin{center}
-\begin{bf}Fast to develop\end{bf}\newline \bigskip
-\begin{bf}Fast to run\end{bf}\newline \bigskip
-\hspace{-2.5cm}
-\includegraphics[width=0.35\textwidth]{pics/road-runner-1.jpg}
-\end{center}
-\end{frame}
-
-
-\section{Theano}
 \begin{frame}
   \tableofcontents[currentsection]
 \end{frame}
@@ -319,15 +231,22 @@ A total of 141 people contributed to this release.
 \begin{frame}{Description (2)}
 
   \begin{itemize}
-    \item symbolic differentiation and R op (Hessian Free Optimization)
-    \item Can reuse other technologies for best performance
+    \item \begin{bf}Symbolic differentiation and R op\end{bf} (Hessian Free Optimization)
+    \item Can \begin{bf}reuse other technologies\end{bf} for best performance
     \begin{itemize}
-      \item BLAS, SciPy, CUDA, PyCUDA, Cython, Numba, ...
+      \item CUDA, CuBLAS, CuDNN, BLAS, SciPy, PyCUDA, Cython, Numba, ...
     \end{itemize}
     \item Sparse matrices (CPU only)
     \item Extensive unit-testing and self-verification
     \item Extensible (You can create new operations as needed)
-    \item Works on Linux, OS X and Windows
+    \item Works on \begin{bf}Linux, OS X and Windows\end{bf}
+    \item \begin{bf}Multi-GPU\end{bf}
+    \item New GPU back-end:
+      \begin{itemize}
+      \item \begin{bf}Float16\end{bf} new back-end (need cuda 7.5)
+      \item \begin{bf}Multi dtypes\end{bf}
+      \item Multi-GPU support in the same process
+      \end{itemize}
   \end{itemize}
 \end{frame}
 
@@ -429,7 +348,6 @@ print f([0, 1, 2])
 \begin{lstlisting}
 >>> from theano import shared
 >>> x = shared(0.)  # Normally, model parameters
->>> from theano.compat.python2x import OrderedDict
 >>> updates = [(x, x + 1)]
 >>> f = function([], updates=updates)
 >>> f()
@@ -453,7 +371,6 @@ print f([0, 1, 2])
   \item jacobian
   \item clone the graph with replacement
   \item you can navigate the graph if you need
-      (go from the result of computation to its input, recursively)
   \end{itemize}
   Those functions can get called many times, for example to get the 2nd
   derivative.
@@ -503,7 +420,7 @@ print f([0, 1, 2])
 
 \begin{frame}{CuDNN}
   \begin{itemize}
-  \item V3 and V4 is supported.
+  \item V3 and V4 is supported. (v5 soon).
   \item It is enabled automatically if available.
   \item Theano flag to get an error if can't be used: ``dnn.enabled=True''
   \item Theano flag to disable it: ``dnn.enabled=False''
@@ -513,9 +430,10 @@ print f([0, 1, 2])
 \subsection{Debugging}
 \begin{frame}{Debugging}
   \begin{itemize}
-  \item DEBUG\_MODE
+  \item DebugMode: a mode that tests many things done by Theano (very slow)
+  \item NanGuardMode: a mode that help find the cause of nan in the graph.
   \item Error message
-  \item theano.printing.debugprint
+  \item theano.printing.debugprint: print a textual representation of computation
   \end{itemize}
 \end{frame}
 
@@ -584,7 +502,7 @@ Backtrace when the node is created:
 
 
 \begin{frame}[fragile]
-  \frametitle{Error message: 2st part}
+  \frametitle{Error message: 2nd part}
 \begin{color}{gray}
 HINT: Re-running with most Theano optimization
 disabled could give you a back-traces when this
@@ -739,9 +657,9 @@ train_model = theano.function(
 # convolve input feature maps with filters
 conv_out = conv.conv2d(input=x, filters=W)
 
-# downsample each feature map individually,
+# pool each feature map individually,
 # using maxpooling
-pooled_out = downsample.max_pool_2d(
+pooled_out = pool.pool_2d(
     input=conv_out,
     ds=(2, 2),  // poolsize
     ignore_border=True)
@@ -757,10 +675,10 @@ output = T.tanh(pooled_out +
   \frametitle{Scan}
 \begin{itemize}
 \item Allows looping (for, map, while)
-\item Allows recursion (reduce)
-\item Allows recursion with dependency on many of the previous time steps
+\item Allows recurrence (reduce)
+\item Allows recurrence with dependency on many of the previous time steps
 \item Optimize some cases like moving computation outside of scan
-\item The Scan grad is done via Backpropagation Through Time(BPTT)
+\item The Scan grad is done via Backpropagation Through Time (BPTT)
 \end{itemize}
 \end{frame}
 
@@ -779,17 +697,74 @@ output = T.tanh(pooled_out +
 
 \fi
 
+\section{News}
+\begin{frame}{Theano 0.8}
+\begin{tiny}Released 21th of March, 2016\end{tiny}
+
+Highlights:
+\begin{itemize}
+\item Faster compilation and execution
+\item Integration of CuDNN for better GPU performance
+\item Many Scan improvements (execution speed up, ...)
+\item optimizer=fast\_compile moves computation to the GPU.
+\item Multi-GPU for data parallism via Platoon \url{https://github.com/mila-udem/platoon}
+\item New GPU back-end:  
+  \begin{itemize}
+  \item Float16 new back-end (need cuda 7.5)
+  \item Multi dtypes
+  \item Multi-GPU support in the same process
+  \end{itemize}
+\end{itemize}
+
+\end{frame}
+
+
+\begin{frame}{Theano 0.8}
+
+Highlights:
+\begin{itemize}
+\item Better convolution on CPU and GPU. (CorrMM, cudnn, 3d conv, more parameters)
+\item More pooling parameters supported
+\item Interactive visualization of graphs with d3viz
+\item cnmem (better memory management on GPU)
+\item Bilinear interpolation of images
+\end{itemize}
+
+A total of 141 people contributed to this release.
+\end{frame}
+
+
+\begin{frame}{Roadmap}
+  \normalsize
+  \begin{itemize}
+  \item Deprecate the old GPU back-end
+  \item Faster compile time
+    \begin{itemize}
+    \item First time compilation (less C code compilations, already cached)
+    \item Of big graph (faster graph optimization)
+    \end{itemize}
+  \item Handling of bigger graph
+  \item Speed/Memory trade off
+    \begin{itemize}
+    \item Scan very long sequence, (ex: Audio recognition and generation)
+    \item Recompute cheap operation of the forward during the gradient
+    \end{itemize}
+  \item More Multi-GPU data parallelism algo.
+  \end{itemize}
+\end{frame}
+
+
 \section{End}
 \begin{frame}{Where to learn more}
 \normalsize
 \begin{itemize}
 \item GTC2016 session:
   \begin{itemize}
-  \item S6116 - Hands-on Lab: Deep Learning with the Theano Python Library
+  \item \bf{S6116 - Hands-on Lab: Deep Learning with the Theano Python Library}
   \end{itemize}
 \item Deep Learning Tutorials with Theano: \url{deeplearning.net/tutorial}
-\item Theano tutorial: \url{deeplearning.net/software/tutorial}
-\item Theano website: \url{deeplearning.net/software}
+\item Theano tutorial: \url{deeplearning.net/software/theano/tutorial}
+\item Theano website: \url{deeplearning.net/software/theano}
 \item Doc of frameworks on top of Theano like Blocks, Keras, Lasagne, ...
 \end{itemize}
 
@@ -805,7 +780,7 @@ Acknowledgments
 \begin{itemize}
 \item All people working or having worked at MILA institute/LISA lab.
 \item All Theano users/contributors.
-\item Compute Canada, RQCHP, NSERC, NVIDIA, and Canada Research Chairs for providing funds, access to compute resources, hardware or GPU libraries.
+\item Compute Canada, RQCHP, NSERC, NVIDIA, and Canada Research Chairs for providing funds, access to computing resources, hardware or GPU libraries.
 \end{itemize}
 
 \end{frame}

@@ -19,7 +19,7 @@
 Frédéric Bastien \newline
 \newline
 \newline
-Département d'Informatique et de Recherche Opérationnelle \newline
+Montreal Institute for Learning Algorithms \newline
 Université de Montréal \newline
 Montréal, Canada \newline
 \texttt{bastienf@iro.umontreal.ca} \newline \newline
@@ -59,16 +59,30 @@ Presentation prepared with Pierre Luc Carrier and Arnaud Bergeron
   \item SciPy: sparse matrix objects and more scientific computing functionality
   \item libgpuarray: GPU $n$-dimensional array object in C for CUDA and OpenCL
   \item Theano: compiler/symbolic graph manipulation
+    \begin{itemize}
+    \item \bf{(Not a machine learning framework/software)}
+    \end{itemize}
+  \item \{...\}: Many libraries built on top of Theano
   \end{itemize}
 \end{frame}
 
-\begin{frame}{High level (2)}
+\begin{frame}{What Theano provides}
+  \begin{itemize}
+    \item Lazy evaluation for performance
+    \item GPU support
+    \item Symbolic differentiation
+    \item Automatic speed and stability optimization
+  \end{itemize}
+
+\end{frame}
+
+\begin{frame}{High level}
   Many [machine learning] library build on top of Theano
   \begin{itemize}
   \item Keras
   \item blocks
   \item lasagne
-  \item sklearn-theano: Easy deep learning by combining Theano and sklearn.
+  \item sklearn-theano
   \item PyMC 3
   \item theano-rnn
   \item Morb
@@ -76,18 +90,24 @@ Presentation prepared with Pierre Luc Carrier and Arnaud Bergeron
   \end{itemize}
 \end{frame}
 
+\begin{frame}{Goal of the stack}
+\begin{center}
+\begin{bf}Fast to develop\end{bf}\newline \bigskip
+\begin{bf}Fast to run\end{bf}\newline \bigskip
+\hspace{-2.5cm}
+\includegraphics[width=0.35\textwidth]{pics/road-runner-1.jpg}
+\end{center}
+\end{frame}
+
 \begin{frame}{Some models build with Theano}
   Some models that have been build with Theano.
   \begin{itemize}
   \item Neural Networks
-  \item Convolutional Neural Networks
-  \item RNN, RNN CTC, LSTM
-  \item NADE, RNADE
+  \item Convolutional Neural Networks, AlexNet, OverFeat, GoogLeNet
+  \item RNN, CTC, LSTM, GRU
+  \item NADE, RNADE, MADE
   \item Autoencoders
-  \item Alex Net's
-  \item GoogleLeNet
-  \item Overfeat
-  \item Generative Adverserial Nets
+  \item Generative Adversarial Nets
   \item SVMs
   \item \begin{bf}many variations of above models and more\end{bf}
   \end{itemize}
@@ -103,6 +123,23 @@ Presentation prepared with Pierre Luc Carrier and Arnaud Bergeron
 %%  \item ...
 %%   \end{itemize}
 %% \end{frame}
+
+\begin{frame}{Project status?}
+  \begin{itemize}
+    \item Mature: Theano has been developed and used since January 2008 (8 yrs old)
+    \item Driven hundreds of research papers % Over a thousands of research paper
+    \item Good user documentation
+    \item Active mailing list with worldwide participants
+    \item Core technology for Silicon-Valley start-ups
+    \item Many contributors (some from outside our institute)
+    \item Used to teach many university classes
+    \item Has been used for research at big compagnies
+    \item Theano 0.8 released 21th of March, 2016
+  \end{itemize}
+  Theano: \url{deeplearning.net/software/theano/}
+
+  Deep Learning Tutorials: \url{deeplearning.net/tutorial/}
+\end{frame}
 
 \begin{frame}{Python}
   \begin{itemize}
@@ -147,26 +184,6 @@ Presentation prepared with Pierre Luc Carrier and Arnaud Bergeron
   \end{itemize}
 \end{frame}
 
-\begin{frame}{What's missing?}
-  \begin{itemize}
-    \item Non-lazy evaluation (required by Python) hurts performance
-    \item Bound to the CPU
-    \item Lacks symbolic or automatic differentiation
-    \item No automatic speed and stability optimization
-  \end{itemize}
-
-\end{frame}
-
-\begin{frame}{Goal of the stack}
-\begin{center}
-\begin{bf}Fast to develop\end{bf}\newline \bigskip
-\begin{bf}Fast to run\end{bf}\newline \bigskip
-\hspace{-2.5cm}
-\includegraphics[width=0.35\textwidth]{pics/road-runner-1.jpg}
-\end{center}
-\end{frame}
-
-
 \section{Theano}
 \begin{frame}
   \tableofcontents[currentsection]
@@ -178,31 +195,38 @@ Presentation prepared with Pierre Luc Carrier and Arnaud Bergeron
   High-level domain-specific language for numeric computation.
 
   \begin{itemize}
-    \item Syntax as close to NumPy as possible
-    \item Compiles most common expressions to C for CPU and/or GPU
-    \item Limited expressivity means more opportunities for optimizations
+    \item \begin{bf}Syntax as close to NumPy\end{bf} as possible
+    \item \begin{bf}Compiles\end{bf} most common expressions \begin{bf}to C for CPU and/or GPU\end{bf}
+    \item \begin{bf}Limited expressivity\end{bf} means more opportunities for optimizations
     \begin{itemize}
-      \item Strongly typed -> compiles to C
-      \item Array oriented -> easy parallelism
-      \item Support for looping and branching in expressions
-      \item No subroutines -> global optimization
+      \item \begin{bf}Strongly typed\end{bf} -> compiles to C
+      \item \begin{bf}Array oriented\end{bf} -> easy parallelism
+      \item Support for \begin{bf}looping and branching\end{bf} in expressions
+      \item No subroutines -> \begin{bf}global optimization\end{bf}
     \end{itemize}
-    \item Automatic speed and numerical stability optimizations
+    \item \begin{bf}Automatic\end{bf} speed and numerical stability \begin{bf}optimizations\end{bf}
   \end{itemize}
 \end{frame}
 
 \begin{frame}{Description (2)}
 
   \begin{itemize}
-    \item Automatic differentiation and R op (Hessian Free Optimization)
-    \item Sparse matrices (CPU only)
-    \item Can reuse other technologies for best performance
+    \item \begin{bf}Symbolic differentiation and R op\end{bf} (Hessian Free Optimization)
+    \item Can \begin{bf}reuse other technologies\end{bf} for best performance
     \begin{itemize}
-      \item BLAS, SciPy, CUDA, PyCUDA, Cython, Numba, ...
+      \item CUDA, CuBLAS, CuDNN, BLAS, SciPy, PyCUDA, Cython, Numba, ...
     \end{itemize}
+    \item Sparse matrices (CPU only)
     \item Extensive unit-testing and self-verification
     \item Extensible (You can create new operations as needed)
-    \item Works on Linux, OS X and Windows
+    \item Works on \begin{bf}Linux, OS X and Windows\end{bf}
+    \item \begin{bf}Multi-GPU\end{bf}
+    \item New GPU back-end:
+      \begin{itemize}
+      \item \begin{bf}Float16\end{bf} new back-end (need cuda 7.5)
+      \item \begin{bf}Multi dtypes\end{bf}
+      \item Multi-GPU support in the same process
+      \end{itemize}
   \end{itemize}
 \end{frame}
 
@@ -226,22 +250,6 @@ Presentation prepared with Pierre Luc Carrier and Arnaud Bergeron
 %%   function calls between Python and C by launching many C functions at once.
 
 %% \end{frame}
-
-\begin{frame}{Project status?}
-  \begin{itemize}
-    \item Mature: Theano has been developed and used since January 2008 (8 yrs old)
-    \item Driven hundreds research papers
-    \item Good user documentation
-    \item Active mailing list with participants from outside our institute
-    \item Core technology for Silicon-Valley start-ups
-    \item Many contributors (some from outside our institute)
-    \item Used to teach many university classes
-    \item Has been used for research at big compagnies
-  \end{itemize}
-  Theano: \url{deeplearning.net/software/theano/}
-
-  Deep Learning Tutorials: \url{deeplearning.net/tutorial/}
-\end{frame}
 
 %\subsection{Simple Example}
 \begin{frame}[fragile]
@@ -529,7 +537,6 @@ array(3.0)
 \begin{lstlisting}
 >>> from theano import shared
 >>> x = shared(0.)
->>> from theano.compat.python2x import OrderedDict
 >>> updates = [(x, x + 1)]
 >>> f = function([], updates=updates)
 >>> f()
@@ -656,7 +663,7 @@ modes regard as fine.
   \begin{itemize}
   \item Theano's current back-end only supports 32 bit on GPU
   \item libgpuarray (new-backend) supports all dtype
-  \item CUDA supports 64 bit, but it is slow on gamer GPUs
+  \item CUDA supports float64, but it is slow on gamer GPUs
   \end{itemize}
 \end{frame}
 
@@ -670,6 +677,7 @@ modes regard as fine.
   \item Set ``device=gpu'' (or a specific gpu, like ``gpu0'')
   \item Set ``floatX=float32''
   \item Optional: warn\_float64=\{'ignore', 'warn', 'raise', 'pdb'\}
+  \item Instead of Theano flags, user can call ``theano.sandbox.cuda.cuda('gpu0')''
   \end{itemize}
 \end{frame}
 
@@ -686,7 +694,7 @@ modes regard as fine.
 
 \begin{frame}{CuDNN}
   \begin{itemize}
-  \item V3 and V4 is supported.
+  \item V3 and V4 is supported. (v5 soon)
   \item It is enabled automatically if available.
   \item Theano flag to get an error if can't be used: ``dnn.enabled=True''
   \item Theano flag to disable it: ``dnn.enabled=False''
@@ -696,7 +704,7 @@ modes regard as fine.
 \subsection{Debugging}
 \begin{frame}{Debugging}
   \begin{itemize}
-  \item DEBUG\_MODE
+  \item DebugMode, NanGuardMode
   \item Error message
   \item theano.printing.debugprint
   \end{itemize}
@@ -1068,9 +1076,9 @@ b = theano.shared(b_values)
 # convolve input feature maps with filters
 conv_out = conv.conv2d(input=x, filters=W)
 
-# downsample each feature map individually,
+# pool each feature map individually,
 # using maxpooling
-pooled_out = downsample.max_pool_2d(
+pooled_out = pool.pool_2d(
     input=conv_out,
     ds=(2, 2),  // poolsize
     ignore_border=True)
@@ -1292,7 +1300,7 @@ Acknowledgments
 \begin{itemize}
 \item All people working or having worked at the LISA lab/MILA institute
 \item All Theano users/contributors
-\item Compute Canada, RQCHP, NSERC, NVIDIA, and Canada Research Chairs for providing funds, access to compute resources, hardware or GPU libraries.
+\item Compute Canada, RQCHP, NSERC, NVIDIA, and Canada Research Chairs for providing funds, access to computing resources, hardware or GPU libraries.
 \end{itemize}
 
 \end{frame}
